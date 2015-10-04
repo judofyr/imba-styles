@@ -19,10 +19,10 @@ class StyleSet
 
 		for key, val of props
 			if key[0] == "@"
-				let opt = Object.assign({block: key}, options)
+				let opt = Object.assign({}, options, block: key)
 				parse(val, opt)
 			elif key[0] == ":"
-				let opt = Object.assign({selector: options:selector+key}, options)
+				let opt = Object.assign({}, options, selector: options:selector+key)
 				parse(val, opt)
 			else
 				key = normalizeKey(key)
