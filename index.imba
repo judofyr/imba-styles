@@ -48,10 +48,7 @@ class StyleSet
 let isFrozen = no
 let result = null
 
-export def freeze
-	isFrozen = yes
-
-export def css(props)
+let css = do |props|
 	if isFrozen
 		throw Error.new("styles have been frozen")
 
@@ -61,7 +58,15 @@ export def css(props)
 	result = null # invalidate the result from toString
 	s
 
-export def toString()
+module.exports = exports = css
+
+# We want `import css from "imba-styles"` to work as well
+export var css = css
+
+export def freeze
+	isFrozen = yes
+
+export def toString
 	if result
 		return result
 
