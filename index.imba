@@ -46,6 +46,7 @@ class StyleSet
 			val
 		
 let isFrozen = no
+let result = null
 
 export def freeze
 	isFrozen = yes
@@ -57,9 +58,13 @@ export def css(props)
 	Object.freeze(props)
 	let s = StyleSet.new(props)
 	STYLES.push(s)
+	result = null # invalidate the result from toString
 	s
 
 export def toString()
+	if result
+		return result
+
 	let blocks = {}
 	let main = ""
 
@@ -75,6 +80,7 @@ export def toString()
 	for name, val of blocks
 		main += "{name}\{{val}\}"
 
+	result = main
 	return main
 
 
