@@ -1,0 +1,20 @@
+{
+  "name": "imba-styles",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.imba",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judofyr/imba-styles.git"
+  },
+  "keywords": [
+    "imba",
+    "css"
+  ],
+  "author": "Magnus Holm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/judofyr/imba-styles/issues"
+  },
+  "homepage": "https://github.com/judofyr/imba-styles#readme"
+}
