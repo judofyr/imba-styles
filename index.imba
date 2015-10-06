@@ -14,8 +14,28 @@ class StyleSet
 
 		parse(props, options)
 
+	let prefixes = ["Moz", "O", "ms", "Webkit"]
+	let rewrites = {}
+
+	let normalizeKey = do |key, style|
+		if `key in rewrites`
+			return rewrites[key]
+
+		if `key in style`
+			return rewrites[key] = key
+
+		let capitalKey = key.charAt(0).toUpperCase + key.substring(1)
+
+		for prefix in prefixes
+			let fullKey = prefix + capitalKey
+			if `fullKey in style`
+				return rewrites[key] = fullKey
+
+		return rewrites[key] = key
+
 	def parse(props, options)
-		let lines = []
+		let doc = document.createElement("div")
+		let style = doc:style
 
 		for key, val of props
 			if key[0] == "@"
@@ -25,26 +45,12 @@ class StyleSet
 				let opt = Object.assign({}, options, selector: options:selector+key)
 				parse(val, opt)
 			else
-				key = normalizeKey(key)
-				val = normalizeValue(val, key)
-				lines.push("{key}:{val}")
+				key = normalizeKey(key, style)
+				style[key] = val
 
-		if lines:length
-			let group = Object.assign({code: lines.join(";")}, options)
-			@groups.push(group)
+		let group = Object.assign({code: style:cssText}, options)
+		@groups.push(group)
 
-	def normalizeKey(key)
-		key.replace(/[A-Z]/) do |x|
-			"-{x.toLowerCase}"
-
-	let assumePixel = /margin|padding|border|left|right|top|bottom/
-
-	def normalizeValue(val, key)
-		if typeof val == 'number' and assumePixel.test(key)
-			val + "px"
-		else
-			val
-		
 let isFrozen = no
 let result = null
 
