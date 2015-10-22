@@ -44,6 +44,9 @@ class StyleSet
 			elif key[0] == ":"
 				let opt = Object.assign({}, options, selector: options:selector+key)
 				parse(val, opt)
+			elif key[0] == "&"
+				let opt = Object.assign({}, options, selector: options:selector+key.substring(1))
+				parse(val, opt)
 			else
 				key = normalizeKey(key, style)
 				style[key] = val
