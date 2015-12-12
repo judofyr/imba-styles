@@ -1,5 +1,5 @@
 # Vendor-prefix normalizing
-var Imba = require "imba"
+require "imba"
 
 let prefixes = ["Moz", "O", "ms", "Webkit"]
 let rewrites = {}
