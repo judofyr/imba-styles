@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/judofyr/imba-styles/issues"
   },
+  "peerDependencies": {
+    "imba": "*"
+  },
   "homepage": "https://github.com/judofyr/imba-styles#readme"
 }
