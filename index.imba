@@ -171,7 +171,7 @@ export def toString
 		key = blockAlias[key] || key
 
 		if key == "main"
-			result += val
+			result = val + result
 		else
 			result += "{key} \{ {val} \}"
 
