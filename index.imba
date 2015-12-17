@@ -130,7 +130,7 @@ let css = do |t, styles|
 	var proto = t:prototype
 	for key, props of styles
 		var ivar = "_{key}"
-		var name = "__{t:name or t.@name}__{key}"
+		var name = "__{t:name or t.@name}__{key}".replace(/-/g, "_")
 		var group = StyleGroup.new(props, name)
 		group.parent = proto[ivar]
 		proto[ivar] = group
