@@ -31,8 +31,8 @@ var buildCss = do |props|
 	var style = doc:style
 
 	for key, val of props
-		key = normalizeKey(key, style)
-		style[key] = val
+		var normKey = normalizeKey(key, style)
+		style[normKey] = val
 
 	style:cssText
 
