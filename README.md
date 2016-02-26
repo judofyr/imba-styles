@@ -1,4 +1,4 @@
-# imba-styles
+# imba-styles (1.5kB min+gzip)
 
 Write CSS in Imba/JavaScript:
 
