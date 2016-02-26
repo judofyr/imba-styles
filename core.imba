@@ -1,7 +1,7 @@
 # Vendor-prefix normalizing
 
 def contentify(value)
-	var keyword = /^none|normal|open-quote|close-quote|no-open-quote|no-close-quote|(url|attr)\(.+|['"].+$/
+	var keyword = /^none|inherit|initial|unset|normal|open-quote|close-quote|no-open-quote|no-close-quote|(url|attr|counters?)\(.+|['"].+$/
 
 	if keyword.test(value)
 		value
