@@ -103,12 +103,14 @@
 	};
 	
 	Builder.prototype.create = function (props,className){
+		var v_;
 		if (this._isFrozen) {
 			throw new Error("Styles have been frozen");
 		};
 		
 		className || (className = ("imba-st-" + (UNIQ++)));
 		var sg = new StyleGroup(className);
+		sg.setParent((((v_ = props.parent),delete props.parent, v_)));
 		sg.parse(props,"&","main");
 		this._groups.push(sg);
 		this._result = null;

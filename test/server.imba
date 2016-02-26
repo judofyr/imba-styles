@@ -44,3 +44,15 @@ test "media alias" do |t|
 	t.ok(re.test(css))
 	t.end
 
+test "set parent with `parent` key" do |t|
+	var s = styles.Builder.new
+
+	var s1 = s.create
+		font-weight: "bold"
+
+	var s2 = s.create
+		parent: s1
+		color: "red"
+
+	t.equal(s1, s2.parent)
+	t.end

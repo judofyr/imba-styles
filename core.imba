@@ -84,6 +84,7 @@ class Builder
 
 		className ||= "imba-st-{UNIQ++}"
 		var sg = StyleGroup.new(className)
+		sg.parent = delete props:parent
 		sg.parse(props, "&", "main")
 		@groups.push(sg)
 		@result = null
