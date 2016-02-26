@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "imba test/server.imba",
+    "test-phantom": "phantomjs test/client.js",
     "build": "imba compile core.imba && webpack"
   },
   "keywords": [

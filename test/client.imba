@@ -1,6 +1,13 @@
 var styles = require ".."
 var test = require "tape"
 
+extern phantom
+
+test.onFinish do
+	var exitCode = test.getHarness.@exitCode
+	if typeof phantom == "object"
+		phantom.exit(exitCode)
+
 test "basic styles" do |t|
 	var s = styles.Builder.new
 
