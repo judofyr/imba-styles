@@ -16,3 +16,31 @@ test "basic styles" do |t|
 
 	t.end
 
+test "media blocks" do |t|
+	var s = styles.Builder.new
+
+	var s1 = s.create
+		width: "35px"
+
+		"@media (max-width: 600px)":
+			width: "30px"
+
+	var css = s.toString
+	var re = /max-width: 600px\) { [^}]+ width: 30px;/
+	t.ok(re.test(css))
+	t.end
+
+test "media alias" do |t|
+	var s = styles.Builder.new
+
+	var s1 = s.create
+		"@mobile":
+			width: "30px"
+
+	s.defineBlockAlias("@mobile", "@media (max-width: 600px)")
+
+	var css = s.toString
+	var re = /max-width: 600px\) { [^}]+ width: 30px;/
+	t.ok(re.test(css))
+	t.end
+
