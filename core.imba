@@ -1,5 +1,14 @@
 # Vendor-prefix normalizing
 
+def contentify(value)
+	var keyword = /^none|normal|open-quote|close-quote|no-open-quote|no-close-quote|(url|attr)\(.+|['"].+$/
+
+	if keyword.test(value)
+		value
+	else
+		value = value.replace(/["\\\n]/g) do |m| "\\" + m
+		'"' + value + '"'
+
 var compileCSS =
 	if typeof window == "object"
 		# Browser version
@@ -28,7 +37,10 @@ var compileCSS =
 				var normKey = (rewrites[key] ||= normalizeKey(key, style))
 				style[normKey] = val
 
-			style:cssText
+			var text = style:cssText
+			if props:content
+				text += "content: {contentify(props:content)};"
+			text
 
 	else
 		# Basic server-side version
@@ -37,6 +49,7 @@ var compileCSS =
 			for key, val of props
 				var cssKey = key.replace(/([A-Z]+)/g) do |match|
 					"-{match.toLowerCase}"
+				val = contentify(val) if key == "content"
 				code += "{cssKey}: {val};"
 			code
 

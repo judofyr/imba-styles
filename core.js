@@ -3,6 +3,17 @@
 	var prefixes, rewrites, normalizeKey, Builder;
 	// Vendor-prefix normalizing
 	
+	function contentify(value){
+		var keyword = /^none|normal|open-quote|close-quote|no-open-quote|no-close-quote|(url|attr)\(.+|['"].+$/;
+		
+		if (keyword.test(value)) {
+			return value;
+		} else {
+			value = value.replace(/["\\\n]/g,function(m) { return "\\" + m; });
+			return '"' + value + '"';
+		};
+	};
+	
 	var compileCSS = 
 		typeof window == "object" ? (
 			// Browser version
@@ -37,18 +48,23 @@
 					style[normKey] = props[key];
 				};
 				
-				return style.cssText;
+				var text = style.cssText;
+				if (props.content) {
+					text += ("content: " + contentify(props.content) + ";");
+				};
+				return text;
 			}
 		) : (
 			// Basic server-side version
 			function(props) {
 				var code = "";
-				;
+				var val;
 				for (var key in props){
-					var cssKey = key.replace(/([A-Z]+)/g,function(match) {
+					val = props[key];var cssKey = key.replace(/([A-Z]+)/g,function(match) {
 						return ("-" + (match.toLowerCase()));
 					});
-					code += ("" + cssKey + ": " + props[key] + ";");
+					if (key == "content") { val = contentify(val) };
+					code += ("" + cssKey + ": " + val + ";");
 				};
 				return code;
 			}
