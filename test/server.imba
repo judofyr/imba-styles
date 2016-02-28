@@ -1,3 +1,4 @@
+require "imba"
 var styles = require ".."
 var test = require "tape"
 
@@ -55,4 +56,13 @@ test "set parent with `parent` key" do |t|
 		color: "red"
 
 	t.equal(s1, s2.parent)
+	t.end
+
+test "should work with dynamic flags" do |t|
+	var s = styles.Builder.new
+	var s1 = s.create
+		font-weight: "bold"
+
+	var app = <div .{s1}>
+	console.log(app.toString)
 	t.end

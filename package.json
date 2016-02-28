@@ -10,7 +10,7 @@
   "scripts": {
     "test": "imba test/server.imba",
     "test-phantom": "phantomjs test/client.js",
-    "build": "imba compile core.imba && webpack"
+    "build": "imba compile index.imba && webpack"
   },
   "keywords": [
     "imba",
@@ -22,7 +22,6 @@
     "url": "https://github.com/judofyr/imba-styles/issues"
   },
   "peerDependencies": {
-    "imba": "*"
   },
   "homepage": "https://github.com/judofyr/imba-styles#readme",
   "devDependencies": {

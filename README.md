@@ -18,8 +18,8 @@ tag article
 
     def render
         <self>
-            <div class=@header-css> object.title
-            <div class=@body-css> object.body
+            <div .{@header-css}> object.title
+            <div .{@body-css}> object.body
 
 tag main
     def render
@@ -30,11 +30,10 @@ tag main
 
 ## Usage in JavaScript
 
-If you're not using Imba, you can require `imba-styles/core` which is a plain
-JavaScript version of the library. You have access to the exact same features:
+You can also use `imba-styles` in plain JavaScript projects:
 
 ```javascript
-var styles = require("imba-styles/core")
+var styles = require("imba-styles")
 
 var header = styles.create({
   fontWeight: "bold",

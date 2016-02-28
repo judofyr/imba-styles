@@ -200,6 +200,10 @@
 		return this;
 	};
 	
+	StyleGroup.prototype.toString = function (){
+		return this._className;
+	};
+	
 	StyleGroup.prototype.parse = function (props,scope,block){
 		var ruleProps = {};
 		var isEmpty = true;

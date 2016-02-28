@@ -1,3 +1,5 @@
+require "imba"
+
 var styles = require ".."
 var test = require "tape"
 
@@ -21,7 +23,7 @@ test "basic styles" do |t|
 		def render
 			<self>
 				<style> s.toString
-				<@header class=@header-css> "Hello"
+				<@header .{@header-css}> "Hello"
 
 		def verify
 			var style = window.getComputedStyle(@header.dom)
@@ -45,7 +47,7 @@ test "content pseudo class" do |t|
 		def render
 			<self>
 				<style> s.toString
-				<@header class=@header-css> "Hello"
+				<@header .{@header-css}> "Hello"
 
 		def verify
 			var style = window.getComputedStyle(@header.dom, ":after")
