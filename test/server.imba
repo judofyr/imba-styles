@@ -60,9 +60,9 @@ test "set parent with `parent` key" do |t|
 
 test "should work with dynamic flags" do |t|
 	var s = styles.Builder.new
-	var s1 = s.create
-		font-weight: "bold"
+	var s1 = s.create({font-weight: "bold"}, "foo")
 
 	var app = <div .{s1}>
-	console.log(app.toString)
+	var re = /class="foo"/
+	t.ok(re.test(app.toString))
 	t.end
