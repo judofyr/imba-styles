@@ -26,7 +26,6 @@
   "homepage": "https://github.com/judofyr/imba-styles#readme",
   "devDependencies": {
     "imba": "^0.14.5",
-    "imba-loader": "^1.0.1",
     "tape": "^4.4.0",
     "webpack": "^1.12.14"
   }

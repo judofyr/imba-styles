@@ -10,7 +10,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [{ test: /\.imba$/, loader: 'imba' }]
+    loaders: [{ test: /\.imba$/, loader: 'imba/loader' }]
   },
 
   resolve: {
