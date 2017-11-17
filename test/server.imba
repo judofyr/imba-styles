@@ -58,6 +58,21 @@ test "set parent with `parent` key" do |t|
 	t.equal(s1, s2.parent)
 	t.end
 
+test "correct subscope" do |t|
+	var s = styles.Builder.new
+
+	var s1 = s.create
+		"&.name":
+			height: "10px"
+		"&.age":
+			height: "20px"
+
+	var css = s.toString
+
+	t.ok(RegExp.new("{s1}\\.name").test(css))
+	t.ok(RegExp.new("{s1}\\.age").test(css))
+	t.end
+
 test "should work with dynamic flags" do |t|
 	var s = styles.Builder.new
 	var s1 = s.create({font-weight: "bold"}, "foo")

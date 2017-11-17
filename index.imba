@@ -168,8 +168,8 @@ class StyleGroup
 				elif key[0] == ":"
 					parse(val, scope+key, block)
 				elif /&/.test(key)
-					scope = key.replace(/&/, scope)
-					parse(val, scope, block)
+					var subscope = key.replace(/&/, scope)
+					parse(val, subscope, block)
 				else
 					ruleProps[key] = val
 					isEmpty = no
